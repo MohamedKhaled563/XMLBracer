@@ -48,8 +48,7 @@ private slots:
 
     void on_Reset_clicked();
 
-    void on_pushButton_10_clicked();
-
+    void print (vector<string> v);
 private:
     Ui::MainWindow *ui;
     QString currentFile="";

@@ -7,79 +7,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 }
 
+extern string text;
+extern vector<string> linesTexts;
+extern vector<string> tags;
+extern vector<string> tagsWithBodies;
+extern vector<string> tagsNames;
+extern vector<string> openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody;
+
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-//Tree Implementation
-struct Node{
-    string tagName;
-    string tagParameters;
-    Node* parentNode;
-    vector<Node *> childrenNodes;
-};
-
-Node* makeNewNode(std::string tagData){
-    string tagName, tagParameters;
-    // Find if the tag have parameters or not
-    if(tagData.find('=') == -1)// No parameters
-    {
-        Node* newNode = new Node;
-        newNode->tagName = tagData;
-        return newNode;
-    }else{
-        // find start point of parameters
-        int index = tagData.find(' ');
-        tagName = tagData.substr(0,index);
-        tagParameters = tagData.substr(index+1,tagData.length()-1);
-        Node* newNode = new Node;
-        newNode->tagName = tagName;
-        newNode->tagParameters = tagParameters;
-        return newNode;
-    }
-}
-
-Node* addChildren(Node* rootNode,std::string tagData){
-    Node* childNode = makeNewNode(tagData);
-    rootNode->childrenNodes.push_back(childNode);
-    childNode->parentNode=rootNode;
-    return childNode;
-}
-
-
-
-
-
-
-void LevelOrderTraversal(Node * root)
-{
-    if (root==NULL)
-        return;
-
-    // Standard level order traversal code
-    // using queue
-    queue<Node *> q;  // Create a queue
-    q.push(root); // Enqueue root
-    while (!q.empty())
-    {
-        int n = q.size();
-
-        // If this node has children
-        while (n > 0)
-        {
-            // Dequeue an item from queue and print it
-            Node * p = q.front();
-            q.pop();
-           // cout << p->key << " ";
-
-            // Enqueue all children of the dequeued item
-            for (int i=0; i<p->childrenNodes.size(); i++)
-               // q.push(p->child[i]);
-            n--;
-        }
-
-        cout << endl; // Print new line between two levels
-    }
 }
 
 void MainWindow::on_Check_Consistency_clicked()
@@ -115,10 +52,17 @@ void MainWindow::on_Compressing_clicked()
 
 }
 
-
+void MainWindow::print (vector<string> v) {
+    string str = "";
+    for (int i = 0; i <  v.size(); i++) {
+        str += v[i];
+        str += '\n';
+    }
+    ui->textEdit_2->setText(QString::fromStdString(str));
+}
 void MainWindow::on_Save_clicked()
 {
-
+    print(openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody);
 }
 
 
