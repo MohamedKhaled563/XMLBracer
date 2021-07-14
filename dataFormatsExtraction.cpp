@@ -1,9 +1,4 @@
-#include "mainwindow.h"
-
-// Files management
-QString currentFile="";
-QFile mytempfile("out.txt");
-QFile myfile("myfile.txt");
+#include "headerfiles.h"
 
 // Data Structure
 string text;
@@ -11,6 +6,7 @@ string text;
 vector<string> linesTexts;
 // Input file as tags
 vector<string> tags;
+vector<int> tagsLines;
 // Input file as tags with bodies
 vector<string> tagsWithBodies;
 // Tag Names
@@ -19,17 +15,20 @@ vector<string> tagsNames;
 vector<string> openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody;
 // This vector holds lines that need to be solved
 vector <int> solvingLines;
+//this ds holdes mistakes lines
+vector<unsigned int> mistakes;
 
 // Datastructire manipulation
 void extractLinesFromInputString(){
-
+    // Initially there are no lines
+    linesTexts.resize(0);
     // Splitting data into lines
     linesTexts.clear();
     int start, end = -1;
     //iterate over all chracters until new line character then append it into "lineTexts" vector
     for (int i = 0; i < text.size(); i++) {
         if (text[i] == '\n') {
-            start = text.find_first_not_of ({' '}, end + 1);
+            start = max(text.find_first_not_of ({' '}, end + 1), text.find_first_not_of ({'\t'}, end + 1));
             end = i;
             string lineString = text.substr(start,end - start);
             linesTexts.push_back(lineString);
@@ -48,6 +47,8 @@ void extractTagsFromInputString() {
         // Itirate over each tag in line
         int j = numberOfTagsInLines;
         while (numberOfTagsInLines--){
+            //+1 to make tags lines 1 index
+            tagsLines.push_back(i+1);
             tags.push_back(linesTexts[i].substr(tagStart + 1,tagEnd - tagStart - 1));
             int newStart = linesTexts[i].find('<' , tagStart + 1);
             int newEnd = linesTexts[i].find('>' , tagEnd + 1);
@@ -109,14 +110,10 @@ void extractTagsNamesFromInputString(){
 void extractOpenningTagsAndAttributesAndClosedTagsWithoutSlashesOrBodyFromInputString(){
     // Initially there are no tags
     openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody.resize(0);
-    for (int i = 0; i < tagsWithBodies.size(); i++){
+    for(unsigned int i=0;i<tagsWithBodies.size();i++){        //make tags without slash,,stored in pureTagsLinesWithoutSlash vector
         if(tagsWithBodies[i][0] == '/'){
             openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody.push_back(tagsWithBodies[i].substr(1,tagsWithBodies[i].length()-1));
+        }else{
+                openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody.push_back(tagsWithBodies[i]);}
         }
-        else {
-            if(tagsWithBodies[i][0] != '~'){
-                openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody.push_back(tagsWithBodies[i]);
-            }
-        }
-    }
 }

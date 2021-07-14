@@ -6,8 +6,9 @@
 extern string text;
 // Input file as lines
 extern vector<string> linesTexts;
-// Input file as tags
+// Input file as tags and their lines
 extern vector<string> tags;
+extern vector<int> tagsLines;
 // Input file as tags with bodies
 extern vector<string> tagsWithBodies;
 // Tag Names
@@ -16,10 +17,11 @@ extern vector<string> tagsNames;
 extern vector<string> openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody;
 // This vector holds lines that need to be solved
 extern vector <int> solvingLines;
+extern vector<unsigned int> mistakes;
 
 extern QString currentFile;
-extern QFile mytempfile;
-extern QFile myfile;
+extern QFile temporaryFile;
+extern QFile inputFile;
 
 // Data structure manipulation
 void extractLinesFromInputString();
