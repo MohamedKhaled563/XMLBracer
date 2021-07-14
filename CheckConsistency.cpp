@@ -30,7 +30,7 @@ void findMistakesLines() {
                     string stTop2=st.top().first;
                     if(tagsNames[i]==("/"+stTop2))
                     {
-                        solvingLines.push_back(stTopindex);
+                        solvingLines.push_back(tagsLines[stTopindex]);
                         mistakes.push_back(tagsLines[stTopindex]);
                         st.pop();
                     }

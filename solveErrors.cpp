@@ -4,8 +4,8 @@ void MainWindow::on_Solve_Errors_clicked()
 {
     // Clear modifiedXML plain text
     ui->modifiedXml->clear();
-    
-    string messageText = to_string(solvingLines.size())+" mistakes corrected.\n The red lines will be deleted";
+    QMessageBox message;
+    string messageText = to_string(solvingLines.size())+" mistakes corrected.\nThe red lines will be deleted";
     QString QMessageText =QString::fromStdString(messageText);
     message.setText(QMessageText);
     message.exec();
@@ -14,10 +14,10 @@ void MainWindow::on_Solve_Errors_clicked()
     QTextCharFormat format;
     QTextCursor cursor( ui->modifiedXml->textCursor());
     int counter = 0;
-    for (unsigned int i = 1; i < linesTexts.size() + 1; i++)
+    for (unsigned int i = 0; i < linesTexts.size() ; i++)
     {
-        currentLine = linesTexts[i-1];
-        if(i == mistakes[counter])
+        currentLine = linesTexts[i];
+        if(i == solvingLines[counter] - 1)
         {
             // Go to the next line have a mistake next time
             counter++;
