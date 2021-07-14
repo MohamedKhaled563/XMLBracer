@@ -13,7 +13,41 @@ bool classifytag(string word) {
 // This function implementation need to be added
 // This function will go through all tags in file and store lines that have mistakes in "mistakes" vector
 void findMistakesLines() {
-    
+    extractTagsFromInputString();
+    extractTagsNamesFromInputString();
+    int size=tagsNames.size();
+//mistakes number 1 mean line number win using 1 index
+    stack <pair<string,int>>st;
+    for(int i=0;i<size;i++)
+    {
+        if(classifytag(tags[i]))continue;
+        if(tagsNames[i][0]!='/'){
+            st.push({tagsNames[i],i});
+        }else if(tagsNames[i][0]=='/'){
+            if(st.empty()){
+                mistakes.push_back(tagsLines[i]);
+            }
+            else{
+                if(tagsNames[i]==("/"+st.top().first))
+                    st.pop();
+                else{
+                    string stTop=st.top().first;
+                    int stTopindex=st.top().second;
+                    st.pop();
+                    string stTop2=st.top().first;
+                    if(tagsNames[i]==("/"+stTop2))
+                    {
+                        mistakes.push_back(tagsLines[stTopindex]);
+                        st.pop();
+                    }
+                    else{
+                    mistakes.push_back(tagsLines[i]);
+                    }
+                }
+            }
+        }
+    }
+    sort(mistakes.begin(), mistakes.end());
 }
 //
 //
