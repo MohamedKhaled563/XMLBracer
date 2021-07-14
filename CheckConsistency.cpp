@@ -30,13 +30,11 @@ void findMistakesLines() {
                     string stTop2=st.top().first;
                     if(tagsNames[i]==("/"+stTop2))
                     {
-                        // Wrong openning tag at stTopindex
+                        solvingLines.push_back(stTopindex);
                         mistakes.push_back(tagsLines[stTopindex]);
                         st.pop();
                     }
                     else{
-                        // Missed closing tag
-                        solvingLines.push_back(i);
                         mistakes.push_back(tagsLines[i]);
                     }
                 }
