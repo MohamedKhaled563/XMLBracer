@@ -17,6 +17,8 @@ vector<string> tagsWithBodies;
 vector<string> tagsNames;
 // openning tag with attributes and closing tag without slash
 vector<string> openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody;
+// This vector holds lines that need to be solved
+vector <int> solvingLines;
 
 // Datastructire manipulation
 void extractLinesFromInputString(){

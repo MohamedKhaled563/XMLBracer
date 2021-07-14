@@ -5,18 +5,11 @@ bool classifytag(string word) {
     return 0;
 }
 
-//
-//
-//
-//
-//
-// This function implementation need to be added
-// This function will go through all tags in file and store lines that have mistakes in "mistakes" vector
 void findMistakesLines() {
     extractTagsFromInputString();
     extractTagsNamesFromInputString();
     int size=tagsNames.size();
-//mistakes number 1 mean line number win using 1 index
+    //mistakes number 1 mean line number win using 1 index
     stack <pair<string,int>>st;
     for(int i=0;i<size;i++)
     {
@@ -37,11 +30,14 @@ void findMistakesLines() {
                     string stTop2=st.top().first;
                     if(tagsNames[i]==("/"+stTop2))
                     {
+                        // Wrong openning tag at stTopindex
                         mistakes.push_back(tagsLines[stTopindex]);
                         st.pop();
                     }
                     else{
-                    mistakes.push_back(tagsLines[i]);
+                        // Missed closing tag
+                        solvingLines.push_back(i);
+                        mistakes.push_back(tagsLines[i]);
                     }
                 }
             }
@@ -49,11 +45,6 @@ void findMistakesLines() {
     }
     sort(mistakes.begin(), mistakes.end());
 }
-//
-//
-//
-//
-//
 
 void MainWindow::on_Check_Consistency_clicked()
 {
@@ -61,7 +52,7 @@ void MainWindow::on_Check_Consistency_clicked()
     ui->modifiedXml->clear();
     extractLinesFromInputString();
     findMistakesLines();
-
+    
     // If no mistakes found, display correct message
     QMessageBox message;
     if(mistakes.size() == 0)
@@ -76,7 +67,7 @@ void MainWindow::on_Check_Consistency_clicked()
         QString QMessageText =QString::fromStdString(messageText);
         message.setText(QMessageText);
         message.exec();
-
+        
         string currentLine;
         QTextCharFormat format;
         QTextCursor cursor( ui->modifiedXml->textCursor());

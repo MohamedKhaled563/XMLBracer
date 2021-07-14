@@ -14,6 +14,8 @@ extern vector<string> tagsWithBodies;
 extern vector<string> tagsNames;
 // openning tag with attributes and closing tag without slash
 extern vector<string> openningTagsAndAttributesAndClosedTagsWithoutSlashesOrBody;
+// This vector holds lines that need to be solved
+extern vector <int> solvingLines;
 
 extern QString currentFile;
 extern QFile mytempfile;
