@@ -40,15 +40,16 @@ void MainWindow::on_Save_clicked()
 
     resultXML.open(QIODevice::ReadWrite|QIODevice::Text);
     QString xmlResultString = ui->modifiedXml->toPlainText();
-    stringToBolean(xmlResultString.toUtf8().constData());
-    //stringToBolean("Huffman");
-    /*
-    ofstream myfile;
-    myfile.open ("compressedFile.txt");
-    myfile << toprint;
-    myfile.close();
-    */
-    xmlResultString=QString::fromStdString(toprint);
+    string check=xmlResultString.toUtf8().constData();
+    //check if its a compressed file
+    if(!check[0]=='<'){
+        stringToBolean(check);
+        xmlResultString=QString::fromStdString(toprint);
+        resultXML.write(xmlResultString.toUtf8());
+        resultXML.close();
+        toprint="";
+        return;
+    }
     resultXML.write(xmlResultString.toUtf8());
     resultXML.close();
 }
