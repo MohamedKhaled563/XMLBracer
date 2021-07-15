@@ -22,7 +22,6 @@ extern vector<unsigned int> mistakes;
 extern QString currentFile;
 extern QFile temporaryFile;
 extern QFile inputFile;
-
 // Data structure manipulation
 void extractLinesFromInputString();
 void extractTagsFromInputString();

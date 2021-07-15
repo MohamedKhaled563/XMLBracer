@@ -1,0 +1,15 @@
+debug/checkConsistency.o
+debug/compressing.o
+debug/dataFormatsExtraction.o
+debug/fileManipulation.o
+debug/helperFunctions.o
+debug/main.o
+debug/mainwindow.o
+debug/minify.o
+debug/openFile.o
+debug/prettify.o
+debug/reset.o
+debug/save.o
+debug/solveErrors.o
+debug/xmlToJson.o
+debug/moc_mainwindow.o

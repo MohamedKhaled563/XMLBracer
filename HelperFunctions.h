@@ -15,8 +15,6 @@ Node* buildTree(vector<string> pureTagsLinesWithoutSlash,Node* current_root);
 void generateRepeatedChildNode(Node* root);
 void refactorTree(Node* root);
 
-void correctMistakes();
-void findMistakesLines();
 void makeQutation(Node* root);
 void CreatBracket(Node* root);
 void printNode(Node* root);

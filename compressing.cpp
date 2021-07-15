@@ -1,12 +1,9 @@
 #include<headerfiles.h>
-#include<QDesktopServices>
-#include<QUrl>
-#include <QThread>
+
 void MainWindow::on_Compressing_clicked()
 {
     //QString xmlResultString = ui->modifiedXml->toPlainText();
     //string out = xmlResultString.toUtf8().constData();
-
     //wirte data to be proceesed be exe in input file
     QFile writingFile("HuffInp.txt");
     writingFile.open(QIODevice::ReadWrite | QIODevice::Text);

@@ -5,7 +5,7 @@ bool classifytag(string word) {
     return 0;
 }
 
-void findMistakesLines() {
+void GetMistakesLines() {
     extractTagsFromInputString();
     extractTagsNamesFromInputString();
     int size=tagsNames.size();
@@ -43,13 +43,13 @@ void findMistakesLines() {
     }
     sort(mistakes.begin(), mistakes.end());
 }
-
 void MainWindow::on_Check_Consistency_clicked()
 {
+
     // Clear result text
     ui->modifiedXml->clear();
     extractLinesFromInputString();
-    findMistakesLines();
+    GetMistakesLines();
     
     // If no mistakes found, display correct message
     QMessageBox message;

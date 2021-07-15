@@ -1,6 +1,5 @@
 // Here we take input from the user and build our main data structures
-#include "mainwindow.h"
-#include "dataFormatsExtraction.h"
+#include "headerfiles.h"
 
 void MainWindow::on_Open_File_clicked()
 {
@@ -15,12 +14,11 @@ void MainWindow::on_Open_File_clicked()
     setWindowTitle(fileName);
     QTextStream in(&file);
     QString QText = in.readAll();
-    myfile.remove();
-    mytempfile.resize(0);
+    inputFile.remove();
+    temporaryFile.resize(0);
     file.copy("myfile.txt");
     text = QText.toUtf8().constData();
-    if(text[text.size() - 1] != '\n')
-        text += '\n';
+    //if(text[text.size() - 1] != '\n')text += '\n';
     ui->originalXml->setPlainText(QText);
     ui->originalXml->setPlainText(QText);
     ui->originalXml->setLineWrapMode(QPlainTextEdit::NoWrap);

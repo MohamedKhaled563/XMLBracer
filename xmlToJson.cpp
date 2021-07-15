@@ -3,7 +3,7 @@
 void makeJson(Node* root){
     root->tagName = "\"" + root->tagName + "\"";
     makeQutation(root);
-    makeBrackets(root);
+    CreatBracket(root);
     print(root);
     json[json.length()-1] = '}';
     return;

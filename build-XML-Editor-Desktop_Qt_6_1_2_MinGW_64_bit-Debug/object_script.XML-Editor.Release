@@ -1,0 +1,15 @@
+release/checkConsistency.o
+release/compressing.o
+release/dataFormatsExtraction.o
+release/fileManipulation.o
+release/helperFunctions.o
+release/main.o
+release/mainwindow.o
+release/minify.o
+release/openFile.o
+release/prettify.o
+release/reset.o
+release/save.o
+release/solveErrors.o
+release/xmlToJson.o
+release/moc_mainwindow.o

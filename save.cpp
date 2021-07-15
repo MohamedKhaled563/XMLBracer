@@ -42,7 +42,7 @@ void MainWindow::on_Save_clicked()
     QString xmlResultString = ui->modifiedXml->toPlainText();
     string check=xmlResultString.toUtf8().constData();
     //check if its a compressed file
-    if(!check[0]=='<'){
+    if(!(check[0]=='<')){
         stringToBolean(check);
         xmlResultString=QString::fromStdString(toprint);
         resultXML.write(xmlResultString.toUtf8());

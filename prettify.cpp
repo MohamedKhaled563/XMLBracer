@@ -89,7 +89,7 @@ void MainWindow::on_Prettifying_clicked()
             //comment or prolog
             else {
                 cursor.insertText("\n");
-                format.setForeground( QBrush( QColor(Qt::darkGreen) ) );
+                format.setForeground( QBrush( QColor(Qt::blue) ) );
                 cursor.setCharFormat( format );
                 cursor.insertText( currentWord );
             }
